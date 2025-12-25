@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HiteshDesk | Software Hub</title>
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #a347ff; /* Purple Glow */
+            --accent: #ff47b6;  /* Pink Glow */
+            --bg-body: #fdfbff;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #a347ff 0%, #ff47b6 100%);
+            --glass-shadow: 0 15px 35px rgba(163, 71, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        body { 
+            background: var(--bg-body); 
+            color: #1a1a1a; 
+            display: flex; 
+            min-height: 100vh;
+        }
+
+        /* --- STYLISH SIDEBAR --- */
+        .sidebar {
+            width: 280px;
+            background: var(--white);
+            border-right: 1px solid rgba(163, 71, 255, 0.1);
+            padding: 40px 25px;
+            position: fixed;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .brand-box {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #fdf0ff;
+            border-radius: 20px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 71, 182, 0.1);
+        }
+
+        .brand-box:hover { transform: translateY(-5px); box-shadow: var(--glass-shadow); }
+
+        .brand-logo {
+            width: 45px; height: 45px;
+            background: var(--gradient);
+            color: white;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 14px; font-size: 1.4rem;
+            box-shadow: 0 10px 20px rgba(163, 71, 255, 0.3);
+        }
+
+        .brand-name {
+            font-size: 1.4rem; font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        /* --- MAIN DASHBOARD --- */
+        .main-container {
+            margin-left: 280px;
+            flex: 1;
+            padding: 50px 60px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .search-wrapper {
+            position: relative;
+            width: 400px;
+        }
+
+        .search-wrapper input {
+            width: 100%;
+            padding: 18px 25px 18px 60px;
+            border-radius: 22px;
+            border: 2px solid transparent;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+            outline: none;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .search-wrapper input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(163, 71, 255, 0.15);
+        }
+
+        .search-wrapper i {
+            position: absolute;
+            left: 25px; top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* --- SOFTWARE GRID --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 40px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.03);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.02);
+            transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 40px 80px rgba(163, 71, 255, 0.12);
+        }
+
+        /* Floating Glow Effect on Hover */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -20%; right: -20%;
+            width: 150px; height: 150px;
+            background: var(--gradient);
+            filter: blur(80px);
+            opacity: 0.1;
+            transition: 0.5s;
+        }
+
+        .logo-box {
+            width: 110px; height: 110px;
+            margin: 0 auto 30px;
+            background: #faf5ff;
+            border-radius: 35px;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.5s;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.02);
+        }
+
+        .card:hover .logo-box {
+            transform: scale(1.1) rotate(5deg);
+            background: #fff;
+            box-shadow: 0 15px 30px rgba(255, 71, 182, 0.1);
+        }
+
+        .logo-box img { width: 70%; height: 70%; object-fit: contain; }
+
+        .title { font-size: 1.5rem; font-weight: 800; color: #333; margin-bottom: 10px; }
+
+        /* SIZE BADGE */
+        .size-info {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: #fdf0ff;
+            color: var(--primary);
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 35px;
+        }
+
+        /* DOWNLOAD BUTTON */
+        .download-link {
+            text-decoration: none;
+            background: var(--gradient);
+            color: white;
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            padding: 18px; border-radius: 24px;
+            font-weight: 700; font-size: 1rem;
+            transition: 0.4s;
+            box-shadow: 0 15px 30px rgba(163, 71, 255, 0.25);
+        }
+
+        .download-link:hover {
+            filter: brightness(1.1);
+            gap: 18px;
+            box-shadow: 0 20px 40px rgba(255, 71, 182, 0.35);
+        }
+
+        #no-result { grid-column: 1/-1; text-align: center; padding: 100px; display: none; opacity: 0.3; }
+
+        @media (max-width: 1024px) {
+            .sidebar { width: 100px; padding: 30px 10px; }
+            .brand-name { display: none; }
+            .main-container { margin-left: 100px; padding: 30px; }
+            .search-wrapper { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <a href="https://hiteshdesk.blogspot.com/" class="brand-box">
+            <div class="brand-logo"><i class="fas fa-desktop"></i></div>
+            <span class="brand-name">HiteshDesk</span>
+        </a>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <header class="dashboard-header">
+            <div>
+                <h1 style="font-size: 2.2rem; font-weight: 800;">My Softwares</h1>
+                <p style="color: #a0a0a0; font-weight: 500;">Premium Windows Executables</p>
+            </div>
+            <div class="search-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" id="findInput" placeholder="Search for tools..." onkeyup="filter()">
+            </div>
+        </header>
+
+        <!-- Grid Area -->
+        <div class="grid" id="mainGrid">
+            <!-- Data loaded from JavaScript -->
+        </div>
+
+        <div id="no-result">
+            <i class="fas fa-search-minus" style="font-size: 4rem;"></i>
+            <h3>No software found</h3>
+        </div>
+    </main>
+
+    <script>
+        /* ==========================================
+           MODERN DATA SET (With Your Dropbox Links)
+           ========================================== */
+        const myData = [
+            {
+                id: 1,
+                name: "School Calendar Maker",
+                size: "12.5 MB",
+                img: "https://raw.githubusercontent.com/hiteshjangir8057/School-Calendar-Maker/refs/heads/main/Calendar-Logo.png",
+                url: "https://www.dropbox.com/scl/fi/oxr434a94lsgosx8al7j2/HiteshDesk-School-Calendar-Maker.exe?rlkey=n6lo2d553xgz3vkh6fewbnw77&st=uambatcv&dl=1",
+                status: "on"
+            },
+            {
+                id: 2,
+                name: "Photo Renamer Tool Pro",
+                size: "8.2 MB",
+                img: "https://raw.githubusercontent.com/hiteshjangir8057/Photo-Renamer-Tool-Pro/refs/heads/main/CompressJPEG.Online_img(512x512).png", 
+                url: "https://www.dropbox.com/scl/fi/w9193nuse8ojk1vz42wdi/Photo-Renamer-Tool-Pro.exe?rlkey=pc7bdzzlvavam7ql53c8iyydq&st=jxox4djq&dl=1",
+                status: "off"
+            },
+            {
+                id: 3,
+                name: "Photo Size Unlimited",
+                size: "5.4 MB",
+                img: "https://raw.githubusercontent.com/hiteshjangir8057/Photo-Size-Maker-Unlimited/refs/heads/main/Photo%20Sizer%20Logo.png",
+                url: "https://www.dropbox.com/scl/fi/bxx0w5yqjpp9t5f76jlnd/Photo-Size-Maker-Unlimited.exe?rlkey=f8w5zy9sxkgtvkm5t0k8iitfx&st=yu1dm1h0&dl=1",
+                status: "off"
+            }
+        ];
+
+        /* ==========================================
+           DASHBOARD RENDERER
+           ========================================== */
+        const mainGrid = document.getElementById('mainGrid');
+
+        function loadDashboard() {
+            mainGrid.innerHTML = "";
+            myData.forEach(item => {
+                if(item.status === "on") {
+                    const card = `
+                        <div class="card" data-title="${item.name.toLowerCase()}">
+                            <div class="logo-box">
+                                <img src="${item.img}" alt="software logo">
+                            </div>
+                            <h3 class="title">${item.name}</h3>
+                            <div class="size-info">
+                                <i class="fas fa-file-export"></i> EXE • ${item.size}
+                            </div>
+                            <a href="${item.url}" class="download-link">
+                                <i class="fas fa-download"></i> Direct Download
+                            </a>
+                        </div>
+                    `;
+                    mainGrid.innerHTML += card;
+                }
+            });
+        }
+
+        /* SEARCH FILTER LOGIC */
+        function filter() {
+            let query = document.getElementById('findInput').value.toLowerCase();
+            let cards = document.querySelectorAll('.card');
+            let anyFound = false;
+
+            cards.forEach(card => {
+                let name = card.getAttribute('data-title');
+                if(name.includes(query)) {
+                    card.style.display = "block";
+                    anyFound = true;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+            document.getElementById('no-result').style.display = anyFound ? "none" : "block";
+        }
+
+        // Initialize
+        loadDashboard();
+    </script>
+</body>
+</html>
